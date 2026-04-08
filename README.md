@@ -23,6 +23,7 @@ It should not replace the normal `phis` CLI. The split is:
 - it may also be installed separately when a deployment only needs the main `phis` app and CLI
 - it is the place where the full host-side automation of `phi-server` lifecycle can live
 - it should support both Debian-based host setups and Docker-based lifecycle flows
+- when a command requires elevated privileges, `phis-host` should prefer telling the operator to rerun the same command with `sudo`
 
 ## Local Development
 
@@ -98,6 +99,13 @@ Each site command calls the shared `phis` CLI through:
 - `phis --root <stage-root> site config runtime --key <site-key> --json`
 
 The stage defaults to `prod` unless `defaultStage` is set explicitly in the `phis-host` config.
+
+Privilege model:
+
+- `phis-host` should own the orchestration logic for host mutations
+- if the current process is already privileged, it may perform those actions directly
+- if privileges are missing, it should prefer returning the same `phis-host` command prefixed with `sudo`
+- operators should not need to translate a failed `phis-host` action into lower-level `systemctl`, `nginx`, or `apache` commands by hand
 
 Expected next steps:
 
