@@ -3,3 +3,8 @@ build/
 dist/
 *.test
 *.out
+debian/.debhelper/
+debian/debhelper-build-stamp
+debian/files
+debian/*.substvars
+debian/phis-host/
