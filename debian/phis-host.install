@@ -1,0 +1,2 @@
+build/phis-host usr/bin/
+phis-host.example.json usr/share/doc/phis-host/examples/

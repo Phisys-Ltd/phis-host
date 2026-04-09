@@ -1,0 +1,22 @@
+Source: phis-host
+Section: admin
+Priority: optional
+Maintainer: Phisys Ltd. <debian@phisys.com>
+Build-Depends:
+ debhelper-compat (= 13),
+ golang-any
+Standards-Version: 4.7.0
+Rules-Requires-Root: no
+
+Package: phis-host
+Architecture: any
+Depends:
+ ${misc:Depends},
+ phis
+Suggests:
+ apache2,
+ nginx,
+ postgresql-client
+Description: PHIS host bootstrap and lifecycle helper
+ Host-side companion for PHIS stage bootstrap, PostgreSQL bootstrap,
+ and privileged lifecycle tasks around the packaged PHIS runtime.

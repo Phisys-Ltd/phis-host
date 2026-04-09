@@ -1,0 +1,12 @@
+Package: phis-host
+Version: 0.1.0-1
+Architecture: amd64
+Maintainer: Phisys Ltd. <debian@phisys.com>
+Installed-Size: 2692
+Depends: phis
+Suggests: apache2, nginx, postgresql-client
+Section: admin
+Priority: optional
+Description: PHIS host bootstrap and lifecycle helper
+ Host-side companion for PHIS stage bootstrap, PostgreSQL bootstrap,
+ and privileged lifecycle tasks around the packaged PHIS runtime.

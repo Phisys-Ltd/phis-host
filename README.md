@@ -126,3 +126,11 @@ Expected next steps:
 1. Install Go locally.
 2. Run `mkdir -p build && go build -o build/phis-host ./cmd/phis-host`.
 3. Add write-side host commands for site init, service wiring, and deploy lifecycle.
+
+Debian package builds should run from the repository helper:
+
+- `./scripts/build-deb.sh`
+
+This copies the working tree into `/tmp/phis-builds/phis-host/src` and lets
+`dpkg-buildpackage` write its `.deb`, `.changes`, and `.buildinfo` files into
+`/tmp/phis-builds/phis-host/artifacts/` instead of the project parent directory.

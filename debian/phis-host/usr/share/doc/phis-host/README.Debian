@@ -1,0 +1,34 @@
+PHIS Host for Debian
+====================
+
+Install layout
+--------------
+
+- Binary: `/usr/bin/phis-host`
+- Default host config path: `/var/lib/phis/phis-host/config.json`
+- Stage documentation path: `/var/lib/phis/phis-host/stages/README.md`
+- Example config: `/usr/share/doc/phis-host/examples/phis-host.example.json`
+
+This package depends on the packaged `phis` runtime and CLI. `phis-host` calls
+`/usr/bin/phis` for stage-aware config inspection and copies the bundled
+`phis-config.json` from the installed `phis` package during `stage init`.
+
+Host state
+----------
+
+No runtime state is stored under `/etc/phis-host`.
+
+Mutable host-side state belongs under:
+
+- `/var/lib/phis/phis-host/`
+- `/srv/phis/stages/<stage>/`
+
+The package creates `/var/lib/phis/phis-host` and `/var/lib/phis/phis-host/stages`
+on install. Per-stage roots are created by `phis-host stage init`.
+
+Database bootstrap
+------------------
+
+`phis-host stage init db` uses the external `psql` client for PostgreSQL
+bootstrap. If local database bootstrap is needed on the host, install
+`postgresql-client` or an equivalent package that provides `psql`.

@@ -1,0 +1,18 @@
+#!/usr/bin/make -f
+
+export DH_VERBOSE = 1
+export CGO_ENABLED = 0
+DEB_UPSTREAM_VERSION := $(shell dpkg-parsechangelog -SVersion | sed 's/-[^-]*$$//')
+ARTIFACT_DIR ?= ..
+
+%:
+	dh $@
+
+override_dh_auto_build:
+	mkdir -p build
+	go build -trimpath \
+		-ldflags "-s -w -X github.com/Phisys-Ltd/phis-host/internal/version.Version=$(DEB_UPSTREAM_VERSION)" \
+		-o build/phis-host ./cmd/phis-host
+
+override_dh_builddeb:
+	dh_builddeb --destdir=$(ARTIFACT_DIR)
