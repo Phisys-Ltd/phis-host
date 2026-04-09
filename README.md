@@ -46,6 +46,13 @@ Recommended host layout:
   - `/srv/phis/stages/test`
   - `/srv/phis/stages/dev`
 
+Recommended central `phis` runtime port convention:
+
+- start with `5301` for the first stage (`prod` by convention)
+- increment by `1` for each additional stage on the same host
+- keep the allocation independent from stage names; stage names remain free-form
+- `prod`, `test`, and `dev` are only example stage names, not a fixed set
+
 Expected ownership:
 
 - mutable host state and stage roots should be owned by `phis:phis`
@@ -81,6 +88,13 @@ Defaults:
   - `prod` -> `/srv/phis/stages/prod`
   - `test` -> `/srv/phis/stages/test`
   - `dev` -> `/srv/phis/stages/dev`
+
+Service-port guidance:
+
+- for the shared central `phis` runtime, begin with loopback port `5301`
+- assign `5302`, `5303`, and so on to additional stages as needed
+- treat the port mapping as host-local deployment state rather than something
+  derived from the stage name
 
 `stage init db` bootstraps PostgreSQL for one stage:
 

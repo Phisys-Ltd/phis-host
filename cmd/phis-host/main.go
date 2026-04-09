@@ -630,6 +630,8 @@ Guidance:
 - ` + "`phis-host`" + ` may be versioned and installed separately from ` + "`phis`" + `.
 - ` + "`phis-host`" + ` is the place where the host-side automation of ` + "`phi-server`" + ` lifecycle can live.
 - ` + "`phis-host`" + ` should support both Debian-based host setups and Docker-based lifecycle flows.
+- The recommended loopback port convention for the central ` + "`phis`" + ` runtime starts at ` + "`5301`" + ` for the first stage and increments by ` + "`1`" + ` for each additional stage.
+- Port allocation is host-local deployment state and must not be derived from the stage name itself; stage names remain free-form.
 - Do not edit ` + "`phis-config.json`" + ` manually unless you deliberately replace the bundled defaults.
 - ` + "`phis-config.json`" + ` comes from the installed ` + "`phis`" + ` version and may be replaced again during stage initialization or packaging workflows.
 - Put local, stage-specific, or host-specific overrides into ` + "`phis-runtime.json`" + `.
